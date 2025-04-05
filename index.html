@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal de Jogos da MJx</title>
+  <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" rel="preload" as="script">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0c0c0c;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    input {
+      padding: 12px;
+      width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      background-color: #222;
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+
+    nav button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #1f1f1f;
+      color: white;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+
+    .game {
+      margin: 15px 0;
+    }
+
+    a {
+      color: #00eaff;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #visit-counter {
+      margin-top: 30px;
+      font-size: 1em;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Portal Gamer da MJx</h1>
+
+  <input type="text" id="search" placeholder="🔍 Buscar jogos..." />
+
+  <nav id="category-menu">
+    <button data-filter="all">🌐 Todos</button>
+    <button data-filter="acao">⚔️ Ação</button>
+    <button data-filter="corrida">🏎️ Corrida</button>
+    <button data-filter="puzzle">🧠 Puzzle</button>
+    <button data-filter="casual">👾 Casual</button>
+    <button data-filter="estrategia">🧙‍♂️ Estratégia</button>
+  </nav>
+
+  <div id="game-list">
+    <!-- Cole aqui os jogos com links reais -->
+  </div>
+
+  <div id="visit-counter">
+    👁️ Visitas: <span id="counter">...</span>
+  </div>
+
+  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2e1d7f74b8.mp3?filename=click-button-140881.mp3"></audio>
+
+  <script src="script.js"></script>
+  <script>
+    // Ícones (Lucide)
+    if (window.lucide) window.lucide.createIcons();
+
+    // Som nos botões
+    const clickSound = document.getElementById("click-sound");
+    document.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => clickSound.play());
+    });
+
+    // Contador de visitas (localStorage)
+    const visitCount = localStorage.getItem("mjx-visit-count") || 0;
+    const newCount = parseInt(visitCount) + 1;
+    localStorage.setItem("mjx-visit-count", newCount);
+    document.getElementById("counter").textContent = newCount;
+  </script>
+</body>
+</html>
+
